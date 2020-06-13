@@ -1,0 +1,27 @@
+---
+
+- name: Cisco Wired Campus Design
+  hosts: al-sw
+  gather_facts: false
+  connection: local
+
+  vars:
+    cli:
+      username: admin
+      password: cisco
+
+  tasks:
+    - name: Global config settings
+      ios_config:
+        provider: "{{ cli }}"
+        lines:
+          - show arp
+
+
+      register: print_output
+
+    -  debug: var=print_output
+
+
+
+  
