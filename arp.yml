@@ -1,15 +1,32 @@
 ---
 - name: Get ARP information
-  hosts: al-sw
+  hosts: serointsr33001
   gather_facts: false
 
 
   tasks:
     - name: show arp
-      raw: "show arp"
-      
+      ios_command:
+        commands:
+          - show version
+          - show ip interface brief
+          - show inventory
+          - show ntp association
+      register: show_result
+    - debug: var=show_result.stdout_lines   
 
-      register: print_output
+- name: run "show running | include logging host" after change made
+      ios_command:
+        commands:
+          - show running | include logging host
+      register: syslogsrv_list
 
-    -  debug: var=print_output.stdout_lines
+    - debug: var=syslogsrv_list.stdout_lines
 
+    - name: write running-config to startup-config
+      ios_command:
+        commands:
+          - write
+      register: write_output
+
+    - debug: var=write_output.stdout_lines

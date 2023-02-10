@@ -1,29 +1,9 @@
-[switch]
-cl-sw1
-cl-sw2
-al-sw1
-al-sw2
-fw-sw
+[routers]
+serointsr33001
 
-[al-sw]
-al-sw1
-al-sw2
+[routers:vars]
 
-[cl-sw]
-cl-sw1
-cl-sw2
-
-[core]
-core-1
-core-2
-
-
-[mpls]
-core-1
-core-2
-pe-17
-pe-18
-p
-pe01
-pe02
-
+ansible_network_os=ios
+ansible_user=admin
+ansible_password=cisco
+ansible_connection=network_cli

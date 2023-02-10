@@ -1,19 +1,19 @@
 ---
 
 - name: Cisco Wired Campus Design
-  hosts: al-sw
+  hosts: serointsr33001
   gather_facts: false
   connection: local
 
-  vars:
-    cli:
-      username: admin
-      password: cisco
+#  vars:
+#    cli:
+#      username: admin
+#      password: cisco
 
   tasks:
     - name: Global config settings
       ios_config:
-        provider: "{{ cli }}"
+#        provider: "{{ cli }}"
         lines:
           - vtp mode transparent
           - spanning-tree mode rapid-pvst
